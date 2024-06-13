@@ -5,6 +5,7 @@ import quizCompletedIcon from "../assets/quiz-complete.png";
 // import QuestionTimer from "./QuestionTimer.jsx";
 // import Answers from "./Answers.jsx";
 import Questions from "./Questions.jsx";
+import Summary from "./Summary.jsx";
 
 const Quiz = () => {
   const [userAnswers, setUserAnswers] = useState([]); //儲存用戶的答案
@@ -45,12 +46,7 @@ const Quiz = () => {
 
   //設定完成後畫面
   if (quizIsComplete) {
-    return (
-      <div id="summary">
-        <img src={quizCompletedIcon} alt="icon"></img>
-        <h2>Quiz Completed!</h2>
-      </div>
-    );
+    return <Summary userAnswers={userAnswers} />;
   }
 
   return (
