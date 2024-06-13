@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 //timeout倒數總時間 onTimeout倒計時結束時調用的回調函數
-const QuestionTimer = ({ timeout, onTimeout }) => {
+const QuestionTimer = ({ timeout, onTimeout, mode }) => {
   const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => {
@@ -29,7 +29,14 @@ const QuestionTimer = ({ timeout, onTimeout }) => {
     };
   }, []);
 
-  return <progress id="question-time" max={timeout} value={remainingTime} />;
+  return (
+    <progress
+      id="question-time"
+      max={timeout}
+      value={remainingTime}
+      className={mode}
+    />
+  );
 };
 
 export default QuestionTimer;

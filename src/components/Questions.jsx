@@ -17,6 +17,16 @@ const Questions = ({
     isCorrect: null,
   });
 
+  let timer = 10000;
+
+  if (answer.selectedAnswer) {
+    timer = 1000;
+  }
+
+  if (answer.isCorrect !== null) {
+    timer = 2000;
+  }
+
   function handleSelectAnswer(answer) {
     setAnswer({
       selectedAnswer: answer,
@@ -45,9 +55,11 @@ const Questions = ({
   return (
     <div id="question">
       <QuestionTimer
-        timeout={10000}
+        key={timer}
+        timeout={timer}
         //當用戶在指定時間內沒有選擇答案時，QuestionTimer 會自動調用 handleSkipAnswer，這樣當前問題會被標記為跳過, 確保測驗流程不會因為用戶沒有選擇答案而卡住。
-        onTimeout={onSkipAnswer}
+        onTimeout={answer.selectedAnswer === "" ? onSkipAnswer : null}
+        mode={answerState}
       />
       <h2>{QUESTION[index].text}</h2>
       <Answers
